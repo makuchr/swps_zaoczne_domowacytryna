@@ -1,18 +1,25 @@
-﻿Console.WriteLine("Let's play Rock-Paper-Scissors!");
-
-Console.WriteLine("Choose your sign, pleyr 1 (rock/paper/scissors):");
+﻿Console.WriteLine("Let's play Rock Paper Scissors!");
+Console.WriteLine("Player 1, provide sign (rock/paper/scissors)");
 string firstSign = Console.ReadLine()!;
+// czy podany znak NIE jest jednym z oczekiwanych?
+while (!(firstSign == "rock" || firstSign == "paper" || firstSign == "scissors"))
+{
+    // wyświetl ze znak jest niepoprawny
+    Console.WriteLine("Provide correct sign! (rock/paper/scissors)");
+    // pozwól poprawić swoje zachowanie (poda ponownie znak)
+    firstSign = Console.ReadLine()!;
+}
 
-Console.WriteLine("Choose your sign, pleyr 2 (rock/paper/scissors):");
+Console.WriteLine("Player 2, provide sign (rock/paper/scissors)");
 string secondSign = Console.ReadLine()!;
 
-if (firstSign.Equals(secondSign, StringComparison.CurrentCultureIgnoreCase))
+if (firstSign.Equals(secondSign, StringComparison.OrdinalIgnoreCase))
 {
-    Console.WriteLine("It's a draw!");
+    Console.WriteLine("It's a tie!");
 }
-else if ((firstSign.Equals("rock", StringComparison.CurrentCultureIgnoreCase) && secondSign.Equals("scissors", StringComparison.CurrentCultureIgnoreCase))
-    || (firstSign.Equals("scissors", StringComparison.CurrentCultureIgnoreCase) && secondSign.Equals("paper", StringComparison.CurrentCultureIgnoreCase))
-    || (firstSign.Equals("paper", StringComparison.CurrentCultureIgnoreCase) && secondSign.Equals("rock", StringComparison.CurrentCultureIgnoreCase)))
+else if ((firstSign == "rock" && secondSign == "scissors")
+    || (firstSign == "paper" && secondSign == "rock")
+    || (firstSign == "scissors" && secondSign == "paper"))
 {
     Console.WriteLine("First player won!");
 }
