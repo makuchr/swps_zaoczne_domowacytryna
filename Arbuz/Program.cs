@@ -1,17 +1,7 @@
 ﻿Console.WriteLine("Let's play Rock Paper Scissors!");
-Console.WriteLine("Player 1, provide sign (rock/paper/scissors)");
-string firstSign = Console.ReadLine()!;
-// czy podany znak NIE jest jednym z oczekiwanych?
-while (!(firstSign == "rock" || firstSign == "paper" || firstSign == "scissors"))
-{
-    // wyświetl ze znak jest niepoprawny
-    Console.WriteLine("Provide correct sign! (rock/paper/scissors)");
-    // pozwól poprawić swoje zachowanie (poda ponownie znak)
-    firstSign = Console.ReadLine()!;
-}
 
-Console.WriteLine("Player 2, provide sign (rock/paper/scissors)");
-string secondSign = Console.ReadLine()!;
+string firstSign = GetCorrectSign("Player 1");
+string secondSign = GetCorrectSign("Player 2");
 
 if (firstSign.Equals(secondSign, StringComparison.OrdinalIgnoreCase))
 {
@@ -26,4 +16,22 @@ else if ((firstSign == "rock" && secondSign == "scissors")
 else
 {
     Console.WriteLine("Second player won!");
+}
+
+
+
+
+string GetCorrectSign(string playerName)
+{
+    Console.WriteLine($"{playerName}, provide sign (rock/paper/scissors)");
+    string firstSign = Console.ReadLine()!;
+    // czy podany znak NIE jest jednym z oczekiwanych?
+    while (!(firstSign == "rock" || firstSign == "paper" || firstSign == "scissors"))
+    {
+        // wyświetl ze znak jest niepoprawny
+        Console.WriteLine("Provide correct sign! (rock/paper/scissors)");
+        // pozwól poprawić swoje zachowanie (poda ponownie znak)
+        firstSign = Console.ReadLine()!;
+    }   
+    return firstSign;
 }
