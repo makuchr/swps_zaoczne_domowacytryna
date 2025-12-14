@@ -3,7 +3,7 @@
 Console.WriteLine("Let's play Rock Paper Scissors!");
 
 string sign = GetCorrectSign("Player 1");
-string secondSign = GetCorrectSign("Player 2");
+string secondSign = GetRandomSign("Player 2");
 
 int secondSignIndex = allowedSigns.IndexOf(secondSign);
 int indexOfSignWinningWithSecondSign = (secondSignIndex+1) % allowedSigns.Count;
@@ -34,5 +34,13 @@ string GetCorrectSign(string playerName)
         // pozwól poprawić swoje zachowanie (poda ponownie znak)
         sign = Console.ReadLine()!;
     }   
+    return sign;
+}
+
+string GetRandomSign(string playerName)
+{
+    int index=Random.Shared.Next(allowedSigns.Count);
+    string sign = allowedSigns[index];
+    Console.WriteLine($"{playerName} chosen {sign}");
     return sign;
 }
