@@ -5,13 +5,15 @@ Console.WriteLine("Let's play Rock Paper Scissors!");
 string sign = GetCorrectSign("Player 1");
 string secondSign = GetCorrectSign("Player 2");
 
+int secondSignIndex = allowedSigns.IndexOf(secondSign);
+int indexOfSignWinningWithSecondSign = (secondSignIndex+1) % allowedSigns.Count;
+int firstSignIndex = allowedSigns.IndexOf(sign);
+
 if (sign.Equals(secondSign, StringComparison.OrdinalIgnoreCase))
 {
     Console.WriteLine("It's a tie!");
 }
-else if ((sign == allowedSigns[0] && secondSign == allowedSigns[2])
-    || (sign == allowedSigns[1] && secondSign == allowedSigns[0])
-    || (sign == allowedSigns[2] && secondSign == allowedSigns[1]))
+else if (firstSignIndex==indexOfSignWinningWithSecondSign)
 {
     Console.WriteLine("First player won!");
 }
@@ -19,9 +21,6 @@ else
 {
     Console.WriteLine("Second player won!");
 }
-
-
-
 
 string GetCorrectSign(string playerName)
 {
