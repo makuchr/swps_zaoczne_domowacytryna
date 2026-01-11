@@ -1,10 +1,15 @@
-﻿using System.Drawing;
-
-List<string> allowedSigns = ["rock", "paper", "scissors"];
-
+﻿List<string> allowedSigns = ["rock", "paper", "scissors"];
 int firstPlayerPoints = 0;
 int secondPlayerPoints = 0;
 int pointToAdd=1;
+
+Console.WriteLine("What's your name?");
+string firstPlayerName = Console.ReadLine()!;
+if (string.IsNullOrWhiteSpace(firstPlayerName))
+{
+    Console.WriteLine("Ok, so i will call you Bob");
+    firstPlayerName = "Bob";
+}
 
 Console.WriteLine("How many points is needed to win?");
 int defaultExpectedWins =3;
@@ -19,7 +24,7 @@ if (!parsingResult)
 Console.WriteLine("Let's play Rock Paper Scissors, ok?");
 while (true)
 {
-    string firstSign = GetCorrectSign("Player 1");
+    string firstSign = GetCorrectSign(firstPlayerName);
     string secondSign = GetRandomSign("Player 2");
 
     // 1. Znajdź indeks znaku podanego przez drugą osobę -> x
@@ -38,7 +43,7 @@ while (true)
     //    ze znakiem drugiej osoby -> y == (x + 1) % l
     else if (firstSignIndex == indexOfSignWinningWithSecondSign)
     {
-        Console.WriteLine("First player won!");
+        Console.WriteLine($"{firstPlayerName} won!");
         firstPlayerPoints+=pointToAdd;
     }
     else
@@ -46,7 +51,7 @@ while (true)
         Console.WriteLine("Second player won!");
         secondPlayerPoints+=pointToAdd;
     }
-    Console.WriteLine($"First player: {firstPlayerPoints}");
+    Console.WriteLine($"{firstPlayerName}: {firstPlayerPoints}");
     Console.WriteLine($"First player: {secondPlayerPoints}");
 
     if (firstPlayerPoints >= expectedWins || secondPlayerPoints >= expectedWins)
